@@ -7,7 +7,6 @@ import store.handler.RetryHandler;
 import store.io.ConvenienceStoreDataProvider;
 import store.model.item.PurchasedItem;
 import store.model.policy.Answer;
-import store.repository.CurrentItemRepository;
 import store.service.ItemPurchasingService;
 import store.service.OrderedItemRegisterService;
 import store.service.ItemRegisterService;
@@ -39,7 +38,6 @@ public class ConvenienceStoreController {
     }
 
     public void initializeConvenienceStoreData(){
-        CurrentItemRepository.initializeItems();
         initializePromotionData();
         initializeProductsData();
     }
