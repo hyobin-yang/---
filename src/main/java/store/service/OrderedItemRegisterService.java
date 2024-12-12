@@ -6,17 +6,18 @@ import store.repository.CurrentItemRepository;
 import store.validator.ItemInputValidator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class OrderedItemRegisterService {
 
     private static final String EACH_ITEM_DELIMITER = ",";
     private static final String ITEM_INFORMATION_DELIMITER = "-";
-    private static final String OPEN_SQUARE_BRACKETS = "\\[";
-    private static final String CLOSE_SQUARE_BRACKETS = "\\]";
+    private static final String OPEN_SQUARE_BRACKETS = "[";
+    private static final String CLOSE_SQUARE_BRACKETS = "]";
 
     public List<OrderedItemDTO> registerOrderedItemDTO(String input){
-        List<String> rawItems = List.of(input.split(EACH_ITEM_DELIMITER));
+        List<String> rawItems = Arrays.stream(input.split(EACH_ITEM_DELIMITER)).toList();
         for (String rawItem : rawItems) {
             ItemInputValidator.validateItemInput(rawItem.trim());
         }
@@ -27,7 +28,7 @@ public class OrderedItemRegisterService {
         List<OrderedItemDTO> DTOS = new ArrayList<>();
         for (String rawItem : rawItems) {
             rawItem = rawItem.replace(OPEN_SQUARE_BRACKETS, "").replace(CLOSE_SQUARE_BRACKETS, "");
-            List<String> itemInformation = List.of(rawItem.split(ITEM_INFORMATION_DELIMITER));
+            List<String> itemInformation = Arrays.stream(rawItem.split(ITEM_INFORMATION_DELIMITER)).toList();
             validateItemExistence(itemInformation.get(0).trim());
             validateItemQuantity(itemInformation.get(0).trim(), Long.parseLong(itemInformation.get(1).trim()));
             DTOS.add(new OrderedItemDTO(itemInformation.get(0).trim(), Long.parseLong(itemInformation.get(1).trim())));

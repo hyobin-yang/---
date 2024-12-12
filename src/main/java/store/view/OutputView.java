@@ -56,7 +56,7 @@ public class OutputView {
                 "멤버십할인\t\t\t-%s\n" +
                 "내실돈\t\t\t %s", totalQuantity, decimalFormat.format(totalItemPrice),
                 decimalFormat.format(promotionDiscountPrice), decimalFormat.format(membershipDiscountPrice),
-                decimalFormat.format(finalPayment));
+                decimalFormat.format(finalPayment) + "\n\n");
 
     }
 

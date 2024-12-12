@@ -10,6 +10,10 @@ public class CurrentItemRepository {
 
     private static final List<Item> items = new ArrayList<>();
 
+    public static void initializeItems(){
+        items.clear();
+    }
+
     public static boolean hasItem(String itemName){
         for (Item item : items){
             if (item.isSameItemName(itemName)){

@@ -78,7 +78,7 @@ public class Item {
     }
 
     public void validatePromotionDate(){
-        if (!promotions.get(0).isOngoingPromotion()){
+        if (!promotions.isEmpty() && !promotions.get(0).isOngoingPromotion()){
             generalQuantity += promotionQuantity;
             promotionQuantity = 0;
             promotions.clear();
@@ -108,6 +108,9 @@ public class Item {
     }
 
     public long getFreeQuantity(long quantity){
+        if (promotions.isEmpty()){
+            return 0;
+        }
         if (promotionQuantity >= quantity){
             return quantity / promotions.get(0).getTotalPromotionApplicableCount();
         }

@@ -7,6 +7,7 @@ import store.handler.RetryHandler;
 import store.io.ConvenienceStoreDataProvider;
 import store.model.item.PurchasedItem;
 import store.model.policy.Answer;
+import store.repository.CurrentItemRepository;
 import store.service.ItemPurchasingService;
 import store.service.OrderedItemRegisterService;
 import store.service.ItemRegisterService;
@@ -38,6 +39,7 @@ public class ConvenienceStoreController {
     }
 
     public void initializeConvenienceStoreData(){
+        CurrentItemRepository.initializeItems();
         initializePromotionData();
         initializeProductsData();
     }
@@ -61,7 +63,7 @@ public class ConvenienceStoreController {
         handlePromotionPolicy(orderedItems);
         boolean hasMembership = willApplyMembership();
         printReceipt(orderedItems, hasMembership);
-        if (inputView.willApplyMembership().equals(Answer.POSITIVE)){
+        if (inputView.willPurchaseOtherItems().equals(Answer.POSITIVE)){
             run();
         }
     }
