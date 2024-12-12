@@ -30,16 +30,6 @@ public class Item {
         promotions.add(promotion);
     }
 
-    public void clearPromotion(){
-        promotions.clear();
-    }
-
-    public void validatePromotionCount(){
-        if (promotions.size() > 1){
-            throw new IllegalArgumentException("[SYSTEM] 프로모션은 한 상품당 하나만 적용될 수 있습니다.");
-        }
-    }
-
     public boolean isSameItemName(String itemName){
         return name.equals(itemName);
     }
