@@ -34,7 +34,7 @@ public class ItemRegisterService {
     public void initializedProductsData(List<String> rawProducts){
         for (String rawProduct : rawProducts){
             List<String> product = List.of(rawProduct.split(DELIMITER));
-            if (currentItemRepository.hasItem(product.get(0))){
+            if (CurrentItemRepository.hasItem(product.getFirst())){
                 updateItemQuantity(product);
                 continue;
             }
